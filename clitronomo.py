@@ -6,7 +6,7 @@ import numpy as np
 import sounddevice as sd
 import threading, time, json
 
-VERSION="1.1.0 - settembre 2025"
+VERSION="1.2.0 - settembre 2025"
 SAMPLE_RATE = 44100 
 COMANDI = {
     'g', 's', 'b', '?', '0', '1', '2', '3',
@@ -195,7 +195,7 @@ class Metronome:
             self.config_subdivision = state['config_subdivision']
             
             self.current_preset_id = preset_id
-            self.is_dirty = False # Lo stato ora corrisponde a un preset salvato
+            self.is_dirty = False
             
             print(f"Stato del preset ID{preset_id} applicato.")
             self._request_buffer_rebuild()
@@ -391,15 +391,19 @@ class Metronome:
         print("Metronomo avviato.")
         self.session_measure_count = 0
         self.session_start_time = time.perf_counter()
+        
         # Genera il primo nastro audio prima di partire
         self.active_buffer = self._generate_measure_buffer()
+        
+        # NOTA: In questa versione corretta, non c'è nessuna riga "self.is_dirty = True".
+        # L'azione di avvio non modifica il preset.
+        
         self.is_running.set()
         self.stream = sd.OutputStream(
             samplerate=SAMPLE_RATE, channels=1, dtype=np.int16,
             callback=self._audio_callback, latency='low'
         )
         self.stream.start()
-
     def stop(self):
         if not self.is_running.is_set():
             return
@@ -650,6 +654,59 @@ class PresetManager:
             return str(last_id), preset_data['state']
         return None, None
 
+def build_prompt_string(clitronomo, preset_manager):
+    """Costruisce la stringa del prompt con formattazione e allineamento precisi."""
+    
+    # --- Modifica 1: Allineamento ---
+    # La prima parte viene portata a 39 caratteri e aggiungiamo uno spazio.
+    # Il risultato è un blocco di 40 caratteri che posiziona il cursore
+    # esattamente sulla 41esima colonna per l'inizio della seconda parte.
+    
+    if clitronomo.current_preset_id:
+        pid = clitronomo.current_preset_id
+        preset_data = preset_manager.data['presets'].get(str(pid))
+        if preset_data:
+            name = " ".join(preset_data['name'].split(' ')[1:])
+            info_str = f"ID{pid}: {name}"
+        else:
+            info_str = f"ID{pid}: Sconosciuto"
+    else:
+        info_str = "Default"
+        
+    part1 = f"{info_str:<39.39} " # 39 caratteri di testo + 1 spazio = 40 totali
+
+    # --- Parte 2: Indicatori e Parametri (formato compatto) ---
+    
+    dirty_indicator = "<X>" if clitronomo.is_dirty else "< >"
+    running_indicator = "<X>" if clitronomo.is_running.is_set() else "< >"
+    
+    time_sig_str = f"T{clitronomo.beats_per_measure}/{clitronomo.note_value}"
+    bpm_str = f"B{clitronomo.bpm}"
+    bar_str = f"BR{clitronomo.session_measure_count}"
+    
+    # --- Modifica 2: Prefisso 'S' per le Suddivisioni ---
+    sub_map_reverse = {0: 0, 2: 1, 4: 2, 8: 3}
+    sub_code = sub_map_reverse.get(clitronomo.subdivision_level, 0)
+    sub_str = f"S{sub_code}" # Aggiunto il prefisso 'S'
+    
+    # --- Modifica 3: Orario Condizionale ---
+    elapsed_str = ""
+    if clitronomo.is_running.is_set() and clitronomo.session_start_time is not None:
+        elapsed_seconds = time.perf_counter() - clitronomo.session_start_time
+        # Mostra l'orario solo se è trascorso almeno un secondo
+        if elapsed_seconds >= 1:
+            minutes, seconds = divmod(int(elapsed_seconds), 60)
+            hours, minutes = divmod(minutes, 60)
+            
+            # Formatta l'orario omettendo le ore se sono zero per risparmiare spazio
+            if hours > 0:
+                elapsed_str = f"-{hours:02d}:{minutes:02d}:{seconds:02d}"
+            else:
+                elapsed_str = f"-{minutes:02d}:{seconds:02d}"
+            
+    part2 = f"{dirty_indicator}{running_indicator}-{time_sig_str}-{bpm_str}-{bar_str}-{sub_str}{elapsed_str}>"
+    
+    return part1 + part2
 def main():
     """Funzione principale che avvia il metronomo e gestisce l'input dell'utente."""
     preset_manager = PresetManager()
@@ -665,7 +722,8 @@ def main():
     print("\t\t--- Digita '?' per la lista dei comandi.")
     
     while True:
-        command_full = input("Clitronomo > ").strip().lower()
+        prompt = build_prompt_string(clitronomo, preset_manager)
+        command_full = input(prompt).strip().lower()
 
         if not command_full:
             continue
