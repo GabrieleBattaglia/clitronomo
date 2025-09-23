@@ -1,5 +1,5 @@
 {
- "last_preset_id": "6",
+ "last_preset_id": null,
  "presets": {
   "2": {
    "name": "ID2 modificato con suoni pi\u00f9 alti",
@@ -33,9 +33,9 @@
   "4": {
    "name": "ID4 walter ritmato basso",
    "state": {
-    "bpm": 80,
-    "time_signature": "3/4",
-    "subdivision_level": 2,
+    "bpm": 120,
+    "time_signature": "4/4",
+    "subdivision_level": 0,
     "config_accento": {
      "beep_duration_ms": 30,
      "volume_perc": 30,
@@ -56,7 +56,15 @@
      "attack_ms": 1,
      "decay_ms": 4,
      "frequency_hz": 1300
-    }
+    },
+    "program": [
+     {
+      "start_bar": 2,
+      "end_bar": 4,
+      "target_bpm": 180,
+      "is_audible": false
+     }
+    ]
    }
   },
   "3": {
@@ -173,6 +181,49 @@
      "decay_ms": 3,
      "frequency_hz": 1030.0
     }
+   }
+  },
+  "7": {
+   "name": "ID7 test programmi",
+   "state": {
+    "bpm": 90,
+    "time_signature": "4/4",
+    "subdivision_level": 0,
+    "config_accento": {
+     "beep_duration_ms": 30,
+     "volume_perc": 30,
+     "attack_ms": 2,
+     "decay_ms": 2,
+     "frequency_hz": 200
+    },
+    "config_tick": {
+     "beep_duration_ms": 80,
+     "volume_perc": 13,
+     "attack_ms": 2,
+     "decay_ms": 60,
+     "frequency_hz": 160
+    },
+    "config_subdivision": {
+     "beep_duration_ms": 10,
+     "volume_perc": 15,
+     "attack_ms": 1,
+     "decay_ms": 4,
+     "frequency_hz": 1300
+    },
+    "program": [
+     {
+      "start_bar": 2,
+      "end_bar": 4,
+      "target_bpm": 200,
+      "is_audible": true
+     },
+     {
+      "start_bar": 6,
+      "end_bar": 8,
+      "target_bpm": 140,
+      "is_audible": false
+     }
+    ]
    }
   }
  }
