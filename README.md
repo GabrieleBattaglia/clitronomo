@@ -30,11 +30,16 @@ Clitronomo richiede Python 3 e due librerie esterne.
 
 ## Utilizzo
 
-Per avviare il programma, esegui lo script dalla cartella del progetto:
+Per avviare il programma, esegui lo script dalla cartella del progetto, se usi i sorgenti in Python:
 
 ```bash
 python clitronomo.py
 ```
+
+Oppure scarica la versione compilata per Windows da qui:
+https://github.com/GabrieleBattaglia/clitronomo/releases/tag/v2-0-0
+
+Poi lancia semplicemente l'eseguibile, questi dovrà avere i permessi di scrittura per salvare il proprio file di impostazioni, quindi assicurati che il sistema operativo gli conceda i permessi di scrittura sulla cartella in cui lo hai salvato.
 
 All'avvio, verrà caricato l'ultimo preset utilizzato o, in assenza di preset, verrà avviato un metronomo di default a 120 BPM in 4/4.
 

@@ -1,39 +1,10 @@
 {
- "last_preset_id": null,
+ "last_preset_id": "4",
  "presets": {
-  "2": {
-   "name": "ID2 modificato con suoni pi\u00f9 alti",
-   "state": {
-    "bpm": 70,
-    "time_signature": "4/4",
-    "subdivision_level": 0,
-    "config_accento": {
-     "beep_duration_ms": 400,
-     "volume_perc": 50,
-     "attack_ms": 1,
-     "decay_ms": 399,
-     "frequency_hz": 850
-    },
-    "config_tick": {
-     "beep_duration_ms": 150,
-     "volume_perc": 25,
-     "attack_ms": 1,
-     "decay_ms": 149,
-     "frequency_hz": 330
-    },
-    "config_subdivision": {
-     "beep_duration_ms": 9,
-     "volume_perc": 15,
-     "attack_ms": 3,
-     "decay_ms": 3,
-     "frequency_hz": 1030.0
-    }
-   }
-  },
   "4": {
    "name": "ID4 walter ritmato basso",
    "state": {
-    "bpm": 120,
+    "bpm": 224,
     "time_signature": "4/4",
     "subdivision_level": 0,
     "config_accento": {
@@ -70,21 +41,21 @@
   "3": {
    "name": "ID3 Flauto",
    "state": {
-    "bpm": 60,
+    "bpm": 45,
     "time_signature": "4/4",
-    "subdivision_level": 0,
+    "subdivision_level": 2,
     "config_accento": {
-     "beep_duration_ms": 1000,
+     "beep_duration_ms": 40,
      "volume_perc": 50,
      "attack_ms": 2,
-     "decay_ms": 950,
-     "frequency_hz": 500
+     "decay_ms": 8,
+     "frequency_hz": 700
     },
     "config_tick": {
-     "beep_duration_ms": 80,
+     "beep_duration_ms": 45,
      "volume_perc": 25,
      "attack_ms": 2,
-     "decay_ms": 60,
+     "decay_ms": 4,
      "frequency_hz": 350
     },
     "config_subdivision": {
@@ -93,7 +64,39 @@
      "attack_ms": 1,
      "decay_ms": 4,
      "frequency_hz": 1300
-    }
+    },
+    "program": [
+     {
+      "start_bar": 20,
+      "end_bar": 21,
+      "target_bpm": 45,
+      "is_audible": false
+     },
+     {
+      "start_bar": 22,
+      "end_bar": 23,
+      "target_bpm": 60,
+      "is_audible": true
+     },
+     {
+      "start_bar": 40,
+      "end_bar": 42,
+      "target_bpm": 60,
+      "is_audible": false
+     },
+     {
+      "start_bar": 60,
+      "end_bar": 68,
+      "target_bpm": 100,
+      "is_audible": true
+     },
+     {
+      "start_bar": 100,
+      "end_bar": 110,
+      "target_bpm": 45,
+      "is_audible": true
+     }
+    ]
    }
   },
   "1": {
@@ -224,6 +227,36 @@
       "is_audible": false
      }
     ]
+   }
+  },
+  "8": {
+   "name": "ID8 morbido alto",
+   "state": {
+    "bpm": 70,
+    "time_signature": "4/4",
+    "subdivision_level": 0,
+    "config_accento": {
+     "beep_duration_ms": 400,
+     "volume_perc": 50,
+     "attack_ms": 1,
+     "decay_ms": 399,
+     "frequency_hz": 980
+    },
+    "config_tick": {
+     "beep_duration_ms": 150,
+     "volume_perc": 25,
+     "attack_ms": 1,
+     "decay_ms": 149,
+     "frequency_hz": 1200
+    },
+    "config_subdivision": {
+     "beep_duration_ms": 9,
+     "volume_perc": 15,
+     "attack_ms": 3,
+     "decay_ms": 3,
+     "frequency_hz": 1030.0
+    },
+    "program": []
    }
   }
  }
