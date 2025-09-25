@@ -1,5 +1,5 @@
 {
- "last_preset_id": "4",
+ "last_preset_id": "2",
  "presets": {
   "4": {
    "name": "ID4 walter ritmato basso",
@@ -254,6 +254,36 @@
      "volume_perc": 15,
      "attack_ms": 3,
      "decay_ms": 3,
+     "frequency_hz": 1030.0
+    },
+    "program": []
+   }
+  },
+  "2": {
+   "name": "ID2 Ginny",
+   "state": {
+    "bpm": 120,
+    "time_signature": "4/4",
+    "subdivision_level": 0,
+    "config_accento": {
+     "beep_duration_ms": 70,
+     "volume_perc": 100,
+     "attack_ms": 5,
+     "decay_ms": 8,
+     "frequency_hz": 440
+    },
+    "config_tick": {
+     "beep_duration_ms": 40,
+     "volume_perc": 100,
+     "attack_ms": 5,
+     "decay_ms": 12,
+     "frequency_hz": 990
+    },
+    "config_subdivision": {
+     "beep_duration_ms": 14,
+     "volume_perc": 90,
+     "attack_ms": 2,
+     "decay_ms": 8,
      "frequency_hz": 1030.0
     },
     "program": []
