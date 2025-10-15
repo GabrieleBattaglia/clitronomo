@@ -1,5 +1,5 @@
 {
- "last_preset_id": "2",
+ "last_preset_id": "3",
  "presets": {
   "4": {
    "name": "ID4 walter ritmato basso",
@@ -41,9 +41,9 @@
   "3": {
    "name": "ID3 Flauto",
    "state": {
-    "bpm": 45,
+    "bpm": 60,
     "time_signature": "4/4",
-    "subdivision_level": 2,
+    "subdivision_level": 0,
     "config_accento": {
      "beep_duration_ms": 40,
      "volume_perc": 50,
@@ -65,38 +65,7 @@
      "decay_ms": 4,
      "frequency_hz": 1300
     },
-    "program": [
-     {
-      "start_bar": 20,
-      "end_bar": 21,
-      "target_bpm": 45,
-      "is_audible": false
-     },
-     {
-      "start_bar": 22,
-      "end_bar": 23,
-      "target_bpm": 60,
-      "is_audible": true
-     },
-     {
-      "start_bar": 40,
-      "end_bar": 42,
-      "target_bpm": 60,
-      "is_audible": false
-     },
-     {
-      "start_bar": 60,
-      "end_bar": 68,
-      "target_bpm": 100,
-      "is_audible": true
-     },
-     {
-      "start_bar": 100,
-      "end_bar": 110,
-      "target_bpm": 45,
-      "is_audible": true
-     }
-    ]
+    "program": []
    }
   },
   "1": {
